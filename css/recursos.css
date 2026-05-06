@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-image: url('../img/academia.png');
+    background-size: cover;
+    height: 10vh;
+}
+.a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+.header {
+    background-color: black;
+    padding-inline: 16px;
+    text-decoration: none;
+}
+.logo{
+    height: 45px;
+    width: auto;
+    text-decoration: none;
+}
+.nav{
+    display: flex;
+    margin-inline: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-link{
+    display: flex;
+    list-style: none;
+    gap: 32px;
+    margin: 20px;
+    font-size: 20px;
+
+}
+/* CSS DO NAVBAR */
+.a:hover{
+    text-decoration: underline; 
+    color: #838383;           
+    transition: 0.3s;
+    font-size: 25px;
+}
+.login-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; 
+
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* CARDS */
+.card {
+    background: rgba(0, 0, 0, 0.8); /* leve transparência pra combinar com fundo */
+    padding: 40px;
+    border-radius: 15px;
+    transition: 0.3s;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 5px solid rgb(255, 208, 0);
+    width:400px;
+    height: 300px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgb(255, 208, 0);
+}
+
+/* TÍTULOS DOS CARDS */
+.card h2 {
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+/* INPUTS */
+.card input,
+.card select {
+    width: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    width: 380px;
+    border: none;
+    outline: none;
+}
+
+/* BOTÕES */
+.card button {
+    width: 100%;
+    padding: 10px;
+    background: rgb(255, 208, 0);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card button:hover {
+    background: rgb(255, 208, 0);
+    transform: scale(1.05);
+}
+
+/* LISTAS */
+.card ul {
+    padding-left: 20px;
+}
+
+/* TREINO FORMATADO */
+#treino {
+    white-space: pre-line;
+}
+
+/* CRONÔMETRO */
+#tempo {
+    font-size: 28px;
+    text-align: center;
+    margin: 10px 0;
+}

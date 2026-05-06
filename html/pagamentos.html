@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP Fitness - Pagamentos</title>
+    <link rel="stylesheet" href="../css/pagamentos.css">
+</head>
+<body>
+   <header class="header">
+    <nav class="nav">
+        <img src="../img/UP Academy.png" class="logo">
+
+        <ul class="nav-link">
+            <li><a href="./treino.html" class="a">TREINO</a></li>
+            <li><a href="../html/planos.html" class="a">PLANOS</a></li>
+            <li><a href="./recursos.html" class="a">RECURSOS</a></li>
+            <li><a href="./pagamentos.html" class="a">PAGAMENTOS</a></li>
+        </ul>
+
+        <li>
+            <a href="perfil.html">
+                <img src="../img/login.png" class="login-icon" id="loginFoto">
+            </a>
+        </li>
+    </nav>
+</header>
+
+<div class="topo">
+
+<div class="card">
+
+<h2>💳 Pagamento</h2><br>
+
+<!-- PLANOS -->
+<h3>Escolha seu plano</h3><br>
+
+<div class="planos-select">
+    <div class="plano ativo" onclick="selecionarPlano('Pro', this)">
+        <h4>Plano Pro</h4>
+        <p>R$ 99,90/mês</p>
+    </div>
+
+    <div class="plano" onclick="selecionarPlano('Flex', this)">
+        <h4>Plano Flex</h4>
+        <p>R$ 15,00/dia</p>
+    </div>
+
+    <div class="plano" onclick="selecionarPlano('Smart', this)">
+        <h4>Plano Smart</h4>
+        <p>R$ 69,90/mês</p>
+    </div>
+</div>
+
+<!-- METODOS -->
+<div class="metodos">
+    <div class="metodo ativo" onclick="selecionarMetodo('cartao', this)">Cartão</div>
+    <div class="metodo" onclick="selecionarMetodo('pix', this)">Pix</div>
+    <div class="metodo" onclick="selecionarMetodo('dinheiro', this)">Dinheiro</div>
+</div>
+
+<!-- CARTAO -->
+<div id="cartao">
+    <input type="text" placeholder="Nome no cartão">
+    <input type="text" placeholder="Número do cartão">
+    <input type="text" placeholder="Validade (MM/AA)">
+    <input type="text" placeholder="CVV">
+</div>
+
+<!-- PIX -->
+<div id="pix" class="hidden">
+    <div class="pix-box">
+        <p>Escaneie o QR Code:</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=UPFITNESSPIX">
+        <p>Chave Pix: upfitness@pix.com</p>
+    </div>
+</div>
+
+<!-- DINHEIRO -->
+<div id="dinheiro" class="hidden">
+    <p>💵 Pagamento presencial na academia.</p>
+</div>
+
+<button onclick="pagar()">Confirmar Pagamento</button>
+
+<p id="status"></p>
+
+</div>
+
+</div>
+
+
+    <script src="../js/pagamentos.js"></script>
+</body>
+</html>
