@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alunos</title>
+    <link rel="stylesheet" href="../css/alunos.css">
+</head>
+<body>
+    <header class="header">
+    <nav class="nav">
+        <img src="../img/UP Academy.png" class="logo">
+
+        <ul class="nav-link">
+            <li><a href="./alunos.html" class="a">ALUNOS</a></li>
+            <li><a href="./frequencia.html" class="a">FREQUÊNCIA</a></li>
+            <li><a href="./anotações.html" class="a">ANOTAÇÕES</a></li>
+        </ul>
+
+        <li>
+            <a href="perfilprof.html">
+                <img src="../img/login.png" class="login-icon" id="loginFoto">
+            </a>
+        </li>
+    </nav>
+</header>
+<script>
+    
+window.onload = function(){
+
+    const matricula = localStorage.getItem("matricula");
+    const loginFoto = document.getElementById("loginFoto");
+
+    if(matricula && loginFoto){
+        const fotoSalva = localStorage.getItem("foto_" + matricula);
+
+        if(fotoSalva){
+            loginFoto.src = fotoSalva;
+        }
+    }
+
+}
+</script>
+</body>
+</html>

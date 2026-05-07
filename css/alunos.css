@@ -1,0 +1,59 @@
+body {
+    background-image: url('../img/academia.png');
+    background-size: cover;
+    height: 10vh;
+}
+
+/* Wrapper (logo + container) */
+.wrapper {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px;
+    flex-direction: column;
+    gap: 30px;
+}
+.a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+.header {
+    background-color: black;
+    padding-inline: 16px;
+    text-decoration: none;
+}
+.logo{
+    height: 45px;
+    width: auto;
+}
+.logo2{
+    height: 100px;
+    width: auto;
+}
+.nav{
+    display: flex;
+    margin-inline: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-link{
+    display: flex;
+    list-style: none;
+    gap: 32px;
+    margin: 20px;
+    font-size: 20px;
+
+}
+/* CSS DO NAVBAR */
+.a:hover{
+    text-decoration: underline; 
+    color: #838383;           
+    transition: 0.3s;
+    font-size: 25px;
+}
+.login-icon{
+    width: 30px;
+    height: auto;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>UP Fitness - Perfil</title>
+<link rel="stylesheet" href="../css/perfil.css">
+
+<style>
+.login-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <img src="../img/UP Academy.png" class="logo">
+
+        <ul class="nav-link">
+            <li><a href="./alunos.html" class="a">ALUNOS</a></li>
+            <li><a href="./frequencia.html" class="a">FREQUÊNCIA</a></li>
+            <li><a href="./anotações.html" class="a">ANOTAÇÕES</a></li>
+        </ul>
+
+        <li>
+            <a href="perfilprof.html">
+                <img src="../img/login.png" class="login-icon" id="loginFoto">
+            </a>
+        </li>
+    </nav>
+</header>
+
+<div class="wrapper">
+
+    <img src="../img/UP Academy.png" class="logo2">
+
+    <div class="container">
+
+        <!-- FOTO -->
+        <img id="foto" src="https://via.placeholder.com/120">
+        <br>
+
+        <label for="upload" class="label-upload">Trocar Foto</label>
+        <input type="file" id="upload" accept="image/*">
+
+        <!-- DADOS -->
+        <input type="text" id="matricula" placeholder="Matrícula" readonly>
+        <input type="text" id="nome" placeholder="Nome">
+        <input type="text" id="cpf" placeholder="CPF">
+        <input type="text" id="telefone" placeholder="Telefone">
+        <input type="date" id="data">
+
+        <button onclick="salvar()">Salvar</button>
+        <button><a href="cartao.html">Crie sua Carteirinha</a></button>
+        <button class="logout"><a href="../php/logout.php" class="logout">Sair</a></button>
+
+    </div>
+
+</div>
+
+<script src="../js/perfil.js"></script>
+
+</body>
+</html>
