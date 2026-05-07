@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Carteirinha UP Fitness</title>
+
+<!-- Bibliotecas -->
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link rel="stylesheet" href="../css/cartao.css">
+</head>
+
+<body>
+
+<h2>Gerar Carteirinha</h2><br>
+
+<input type="text" id="nomeInput" placeholder="Nome"><br>
+<input type="text" id="matriculaInput" placeholder="Matrícula"><br>
+<br>
+
+<label class="label-upload" for="upload">Selecionar Foto</label>
+<input type="file" id="upload" accept="image/*">
+
+<br>
+<button onclick="gerar()">Gerar</button>
+<button onclick="baixar()">Baixar PDF</button>
+
+<!-- CARTÃO -->
+<div class="card" id="card">
+
+    <img src="logo.png" class="logo">
+
+    <img id="foto" class="foto" src="https://via.placeholder.com/70">
+
+    <div class="nome" id="nome">Seu Nome</div>
+    <div class="matricula" id="matricula">Matrícula: ---</div>
+
+    <svg id="barcode"></svg>
+
+</div>
+
+<script>
+// FOTO
+const inputFoto = document.getElementById("upload");
+const foto = document.getElementById("foto");
+
+inputFoto.addEventListener("change", function(){
+    const arquivo = this.files[0];
+
+    if(arquivo){
+        const reader = new FileReader();
+        reader.onload = function(e){
+            foto.src = e.target.result;
+        }
+        reader.readAsDataURL(arquivo);
+    }
+});
+
+// GERAR CARTEIRINHA
+function gerar(){
+    let nome = document.getElementById("nomeInput").value;
+    let matricula = document.getElementById("matriculaInput").value;
+
+    if(nome === "" || matricula === ""){
+        alert("Preencha os dados!");
+        return;
+    }
+
+    document.getElementById("nome").innerText = nome;
+    document.getElementById("matricula").innerText = "Matrícula: " + matricula;
+
+    JsBarcode("#barcode", matricula, {
+        format: "CODE128",
+        width: 1.5,
+        height: 40,
+        displayValue: false
+    });
+}
+function pegarBarcodeComoImagem(){
+    const svg = document.getElementById("barcode");
+    const svgData = new XMLSerializer().serializeToString(svg);
+
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const img = new Image();
+
+    return new Promise(resolve => {
+        img.onload = function(){
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            ctx.drawImage(img, 0, 0);
+            resolve(canvas.toDataURL("image/png"));
+        };
+
+        img.src = "data:image/svg+xml;base64," + btoa(svgData);
+    });
+}
+// BAIXAR PDF
+async function baixar(){
+    const fotoSrc = document.getElementById("foto").src;
+    const logoSrc = document.querySelector(".logo").src;
+
+    const nome = document.getElementById("nome").innerText;
+    const matricula = document.getElementById("matricula").innerText;
+
+    // 👇 pega o barcode como imagem
+    const barcodeImg = await pegarBarcodeComoImagem();
+
+    const tela = window.open('', '', 'width=800,height=600');
+
+    tela.document.write(`
+        <html>
+        <head>
+            <title>Carteirinha</title>
+            <style>
+                body {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                }
+
+                .card {
+                    width: 340px;
+                    height: 210px;
+                    border: 2px solid black;
+                    border-radius: 20px;
+                    padding: 20px;
+                    font-family: Arial;
+                    position: relative;
+                }
+
+                .logo {
+                    position: absolute;
+                    top: 15px;
+                    right: 15px;
+                    width: 80px;
+                }
+
+                .foto {
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 50%;
+                    border: 2px solid black;
+                }
+
+                .nome {
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-top: 10px;
+                }
+
+                .matricula {
+                    margin-top: 10px;
+                }
+
+                .barcode {
+                    margin-top: 10px;
+                }
+            </style>
+        </head>
+        <body>
+
+            <div class="card">
+                <img src="${logoSrc}" class="logo">
+                <img src="${fotoSrc}" class="foto">
+
+                <div class="nome">${nome}</div>
+                <div class="matricula">${matricula}</div>
+
+                <!-- BARCODE AGORA COMO IMAGEM -->
+                <img src="${barcodeImg}" class="barcode">
+
+            </div>
+
+        </body>
+        </html>
+    `);
+
+    tela.document.close();
+    tela.focus();
+
+    setTimeout(() => {
+        tela.print();
+    }, 500);
+}
+</script>
+
+</body>
+</html>

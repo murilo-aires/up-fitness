@@ -1,0 +1,83 @@
+body {
+    background-image: url('../img/academia.png');
+    font-family: Arial;
+    text-align: center;
+    padding: 20px;
+}
+.card {
+    width: 340px;
+    height: 210px;
+    background: #ffffff;
+    border-radius: 20px;
+    color: #000;
+    padding: 20px;
+    position: relative;
+    margin: 20px auto;
+    text-align: left;
+    border: 2px solid #000;
+}
+
+/* LOGO */
+.logo {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 80px;
+}
+
+/* FOTO */
+.foto {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #ccc;
+    border: 2px solid #000;
+}
+
+/* TEXTO */
+.nome {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.matricula {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* INPUTS */
+input {
+    padding: 8px;
+    margin: 5px;
+    border-radius: 8px;
+    border: 1px solid #000;
+}
+
+/* BOTÃO */
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* INPUT FILE */
+input[type="file"] {
+    display: none;
+}
+
+.label-upload {
+    background: #ffffff;
+    color: #000000;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+h2{
+    color: white;
+}

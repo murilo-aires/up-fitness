@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UP Fitness - Recursos</title>
+<link rel="stylesheet" href="../css/recursos.css">
+</head>
+
+<body>
+
+    <header class="header">
+            <nav class="nav">
+            <img src="../img/UP Academy.png" alt="" class="logo">
+                <ul class="nav-link">
+                    <li><a href="./treino.html" class="a">TREINO</a></li>
+                    <li><a href="../html/planos.html" class="a">PLANOS</a></li>
+                    <li><a href="./recursos.html" class="a">RECURSOS</a></li>
+                    <li><a href="./pagamentos.html" class="a">PAGAMENTOS</a></li>
+                </ul>
+                <li><a href="perfil.html"><img src="../img/login.png" alt="" class="login-icon" id="loginFoto"></a></li>
+            </nav>
+    </header>
+
+<main class="container">
+
+    <div class="card">
+        <h2>💪 IMC</h2>
+        <input type="number" id="peso" placeholder="Peso (kg)">
+        <input type="number" id="altura" placeholder="Altura (m)">
+        <button onclick="calcularIMC()">Calcular</button>
+        <p id="resultadoIMC"></p>
+    </div>
+
+    <div class="card">
+        <h2>🔥 Calorias</h2>
+        <input type="number" id="pesoCal" placeholder="Peso (kg)">
+        <input type="number" id="alturaCal" placeholder="Altura (cm)">
+        <input type="number" id="idade" placeholder="Idade">
+        <select id="sexo">
+            <option value="m">Masculino</option>
+            <option value="f">Feminino</option>
+        </select>
+        <button onclick="calcularCalorias()">Calcular</button>
+        <p id="resultadoCal"></p>
+    </div>
+
+    <div class="card">
+        <h2>Agendamento de Treino</h2>
+
+        <input type="date" id="dataTreino">
+        <input type="time" id="horaTreino">
+
+        <select id="maquina">
+            <option value="">Selecione a máquina</option>
+            <option>Esteira</option>
+            <option>Bicicleta</option>
+            <option>Leg Press</option>
+            <option>Supino</option>
+            <option>Puxada na Barra</option>
+        </select>
+
+        <button onclick="agendar()">Agendar</button>
+
+        <ul id="listaAgendamentos"></ul>
+    </div>
+
+    <div class="card">
+        <h2>🏋️ Treino</h2>
+        <select id="objetivo">
+            <option value="emagrecer">Emagrecer</option>
+            <option value="hipertrofia">Hipertrofia</option>
+        </select>
+        <select id="nivel">
+            <option value="iniciante">Iniciante</option>
+            <option value="intermediario">Intermediário</option>
+        </select>
+        <button onclick="gerarTreino()">Gerar</button>
+        <p id="treino"></p>
+    </div>
+
+    <div class="card">
+        <h2>⏱️ Cronômetro</h2>
+        <p id="tempo">0</p>
+        <button onclick="iniciar()">Iniciar</button><br>
+        <button onclick="parar()">Parar</button><br>
+        <button onclick="resetar()">Resetar</button>
+    </div>
+
+</main>
+
+<script src="../js/recursos.js"></script>
+
+</body>
+</html>

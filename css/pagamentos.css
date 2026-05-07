@@ -1,0 +1,215 @@
+/* RESET */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BODY (unificado - removi duplicação) */
+body{
+    font-family: Arial;
+    background: url('../img/academia.png') no-repeat center;
+    background-size: cover;
+    min-height: 100vh;
+    color: white;
+}
+
+/* ================= NAVBAR (NÃO ALTEREI) ================= */
+
+.a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.header {
+    background-color: black;
+    padding-inline: 16px;
+}
+
+.logo{
+    height: 45px;
+    width: auto;
+}
+
+.nav{
+    display: flex;
+    margin-inline: 15px;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px; 
+}
+
+.nav-link{
+    display: flex;
+    list-style: none;
+    gap: 32px;
+    margin: 20px;
+    font-size: 20px;
+}
+
+.a:hover{
+    text-decoration: underline; 
+    color: #838383;           
+    transition: 0.3s;
+    font-size: 25px;
+}
+
+.login-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover; 
+
+}
+/* ================= PAGAMENTO ================= */
+
+h2{
+    display: flex;
+    justify-content: center;
+}
+
+/* CONTAINER */
+.topo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 70px); /* não quebra com navbar */
+    gap: 10px;
+}
+
+/* LOGO */
+.logo-topo img {
+    height: 100px;
+}
+
+/* CARD */
+.card {
+    background: rgba(28, 28, 28, 0.95);
+    padding: 40px;
+    border-radius: 15px;
+    width: 450px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+}
+
+/* ================= PLANOS ================= */
+
+.planos-select {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.plano {
+    flex: 1;
+    background: #2a2a2a;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.plano:hover {
+    border-color: rgb(255, 208, 0);
+}
+
+.plano.ativo {
+    background: rgb(255, 208, 0);
+    color: black;
+    font-weight: bold;
+}
+
+/* ================= METODOS ================= */
+
+.metodos {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.metodo {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    background: #333;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.metodo:hover {
+    background: rgb(255, 208, 0);
+    color: black;
+}
+
+.metodo.ativo {
+    background: rgb(255, 208, 0);
+    color: black;
+}
+
+/* INPUTS */
+input {
+    width: 95%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* BOTÃO */
+button {
+    width: 100%;
+    padding: 14px;
+    background: rgb(255, 208, 0);
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* PIX */
+.pix-box {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    border-radius: 10px;
+}
+
+/* STATUS */
+#status {
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* UTIL */
+.hidden {
+    display: none;
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media (max-width: 768px){
+
+    .card{
+        width: 90%;
+        padding: 25px;
+    }
+
+    .planos-select{
+        flex-direction: column;
+    }
+
+    .metodos{
+        flex-direction: column;
+    }
+
+    .logo-topo img{
+        height: 80px;
+    }
+}
+li {
+    list-style: none;
+}
