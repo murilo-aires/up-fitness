@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             localStorage.setItem('nome', '$user[nome]');
             localStorage.setItem('cpf', '$user[cpf]');
             localStorage.setItem('telefone', '$user[telefone]');
-            window.location.href = '../html/perfil.html';
+            window.location.href = '../html/perfilaluno.html';
             </script>";
             exit();
         } else {
