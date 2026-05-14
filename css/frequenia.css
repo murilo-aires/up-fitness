@@ -1,0 +1,159 @@
+*{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-image: url('../img/academia.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+        .a{
+            text-decoration: none;
+            color: white;
+        }
+
+        /* HEADER */
+        .header{
+            background-color: black;
+            padding-inline: 16px;
+        }
+
+        .logo{
+            height: 45px;
+            width: auto;
+        }
+
+        .nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .nav-link{
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            font-size: 20px;
+        }
+
+        .a:hover{
+            text-decoration: underline;
+            color: #838383;
+            transition: 0.3s;
+        }
+
+        .login-icon{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+
+        .titulo{
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .titulo h1{
+            color: rgb(255, 208, 0);
+            font-size: 45px;
+        }
+
+        .container{
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .card{
+            background: rgba(0,0,0,0.85);
+            border: 4px solid rgb(255, 208, 0);
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .aluno{
+            background: rgba(255, 208, 0, 0.12);
+            border-left: 4px solid rgb(255, 208, 0);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .topo-aluno{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .botoes{
+            display: flex;
+            gap: 10px;
+        }
+
+        button{
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .presente{
+            background: limegreen;
+            color: white;
+        }
+
+        .falta{
+            background: crimson;
+            color: white;
+        }
+
+        /* DIAS */
+        .dias{
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dia{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 70px;
+        }
+
+        .bolinha{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: gray;
+            border: 2px solid white;
+        }
+
+        .verde{
+            background: limegreen;
+        }
+
+        .vermelho{
+            background: crimson;
+        }
+        li{
+            list-style: none;
+        }
+        .a:hover{
+            text-decoration: underline; 
+            color: #838383;           
+            transition: 0.3s;
+            font-size: 25px;
+        }

@@ -1,30 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UP Fitness - Treino Personalizado</title>
+    <title>Up Fitness - Área de Treinos</title>
     <link rel="stylesheet" href="../css/treino.css">
 </head>
 <body>
+
     <header class="header">
-    <nav class="nav">
-        <img src="../img/UP Academy.png" class="logo">
+            <nav class="nav">
+            <img src="../img/UP Academy.png" alt="" class="logo">
+                <ul class="nav-link">
+                    <li><a href="./treino.html" class="a">TREINO</a></li>
+                    <li><a href="../html/planos.html" class="a">PLANOS</a></li>
+                    <li><a href="./recursos.html" class="a">RECURSOS</a></li>
+                    <li><a href="./pagamentos.html" class="a">PAGAMENTOS</a></li>
+                </ul>
+                <li><a href="perfilaluno.html"><img src="../img/login.png" alt="" class="login-icon" id="loginFoto"></a></li>
+            </nav>
+    </header>
 
-        <ul class="nav-link">
-            <li><a href="./treino.html" class="a">TREINO</a></li>
-            <li><a href="../html/planos.html" class="a">PLANOS</a></li>
-            <li><a href="./recursos.html" class="a">RECURSOS</a></li>
-            <li><a href="./pagamentos.html" class="a">PAGAMENTOS</a></li>
-        </ul>
+    <!-- TÍTULO -->
+    <div class="titulo">
+        <h1>Área de Treinos</h1>
+        <p>Solicite um treino ao professor ou crie o seu próprio treino.</p>
+    </div>
 
-        <li>
-            <a href="perfilaluno.html">
-                <img src="../img/login.png" class="login-icon" id="loginFoto">
-            </a>
-        </li>
-    </nav>
-</header>
-<script src="../js/treino.js"></script>
+    <!-- CONTAINER -->
+    <div class="container">
+
+        <!-- SOLICITAR TREINO -->
+        <div class="card">
+
+            <h2>Solicitar Treino</h2>
+
+            <p>
+                Envie suas informações para receber um treino personalizado.
+            </p>
+
+            <form>
+
+                <input type="text" placeholder="Seu nome">
+
+                <select>
+                    <option>Objetivo</option>
+                    <option>Hipertrofia</option>
+                    <option>Emagrecimento</option>
+                    <option>Condicionamento físico</option>
+                    <option>Ganho de força</option>
+                </select>
+
+                <textarea placeholder="Fale sobre suas dificuldades ou preferências"></textarea>
+
+                <button type="submit">
+                    Solicitar Treino
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- CRIAR TREINO -->
+        <div class="card">
+
+            <h2>Meu Treino</h2>
+
+            <p>
+                Adicione exercícios e monte seu treino personalizado.
+            </p>
+
+            <form id="formTreino">
+
+                <input type="text" id="exercicio" placeholder="Nome do exercício">
+
+                <input type="text" id="series" placeholder="Séries e repetições">
+
+                <button type="button" onclick="adicionarTreino()">
+                    Adicionar Exercício
+                </button>
+
+            </form>
+
+            <!-- LISTA -->
+            <div class="treino-lista" id="listaTreino"></div>
+
+        </div>
+
+    </div>
+
+    <script src="../js/treino.js"></script>
+
 </body>
 </html>

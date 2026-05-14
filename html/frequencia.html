@@ -1,10 +1,13 @@
+<!-- frequencia.html -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alunos</title>
-    <link rel="stylesheet" href="../css/alunos.css">
+    <title>Frequência dos Alunos</title>
+    <link rel="stylesheet" href="../css/frequenia.css">
+
 </head>
 <body>
     <header class="header">
@@ -23,23 +26,24 @@
             </a>
         </li>
     </nav>
-</header>
-<script>
-    
-window.onload = function(){
+    </header>
 
-    const matricula = localStorage.getItem("matricula");
-    const loginFoto = document.getElementById("loginFoto");
+    <div class="titulo">
+        <h1>Frequência Semanal</h1>
+        <p>Controle de presença dos alunos</p>
+    </div>
 
-    if(matricula && loginFoto){
-        const fotoSalva = localStorage.getItem("foto_" + matricula);
+    <div class="container">
 
-        if(fotoSalva){
-            loginFoto.src = fotoSalva;
-        }
-    }
+        <div class="card">
 
-}
-</script>
+            <div id="listaAlunos"></div>
+
+        </div>
+
+    </div>
+
+    <script src="../js/frequencia.js"></script>
+
 </body>
 </html>

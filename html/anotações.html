@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alunos</title>
-    <link rel="stylesheet" href="../css/alunos.css">
+    <title>Up Fitness - Anotações</title>
+    <link rel="stylesheet" href="../css/anotacoes.css">
 </head>
 <body>
+
+    <!-- HEADER -->
     <header class="header">
     <nav class="nav">
         <img src="../img/UP Academy.png" class="logo">
@@ -24,22 +26,52 @@
         </li>
     </nav>
 </header>
-<script>
-    
-window.onload = function(){
+    <!-- TÍTULO -->
+    <div class="titulo">
 
-    const matricula = localStorage.getItem("matricula");
-    const loginFoto = document.getElementById("loginFoto");
+        <h1>Anotações do Professor</h1>
 
-    if(matricula && loginFoto){
-        const fotoSalva = localStorage.getItem("foto_" + matricula);
+        <p>
+            Registre observações importantes sobre seus alunos.
+        </p>
 
-        if(fotoSalva){
-            loginFoto.src = fotoSalva;
-        }
-    }
+    </div>
 
-}
-</script>
+    <!-- CONTAINER -->
+    <div class="container">
+
+        <div class="card">
+
+            <h2>Nova Anotação</h2>
+
+            <!-- SELECT -->
+            <select id="alunoAnotacao">
+
+                <option value="">
+                    Selecione um aluno
+                </option>
+
+            </select>
+
+            <!-- TEXTAREA -->
+            <textarea
+            id="textoAnotacao"
+            placeholder="Digite a anotação..."></textarea>
+
+            <!-- BOTÃO -->
+            <button onclick="salvarAnotacao()">
+
+                Salvar Anotação
+
+            </button>
+
+            <!-- LISTA -->
+            <div id="listaAnotacoes"></div>
+
+        </div>
+
+    </div>
+<script src="../js/anotacoes.js"></script>
+
 </body>
 </html>

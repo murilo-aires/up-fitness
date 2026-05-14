@@ -23,23 +23,56 @@
             </a>
         </li>
     </nav>
-</header>
-<script>
-    
-window.onload = function(){
+    </header>
 
-    const matricula = localStorage.getItem("matricula");
-    const loginFoto = document.getElementById("loginFoto");
 
-    if(matricula && loginFoto){
-        const fotoSalva = localStorage.getItem("foto_" + matricula);
 
-        if(fotoSalva){
-            loginFoto.src = fotoSalva;
-        }
-    }
+    <!-- TÍTULO -->
+    <div class="titulo">
+        <h1>Área do Professor</h1>
+        <p>Gerencie alunos e acompanhe os treinos da academia.</p>
+    </div>
 
-}
-</script>
+    <!-- CONTAINER -->
+    <div class="container">
+
+        <!-- ADICIONAR ALUNO -->
+        <div class="card">
+
+            <h2>Adicionar Aluno</h2>
+
+            <p>
+                Cadastre novos alunos para acompanhamento personalizado.
+            </p>
+
+            <form>
+
+                <input type="text" placeholder="Nome do aluno" id="nomeAluno">
+
+                <input type="text" placeholder="Matrícula" id="matriculaAluno">
+
+                <button type="button" onclick="adicionarAluno()">
+                    Adicionar Aluno
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- LISTA DE ALUNOS -->
+        <div class="card">
+
+            <h2>Alunos Adicionados</h2>
+
+            <p>
+                Visualize todos os alunos cadastrados.
+            </p>
+
+            <div class="lista-alunos" id="listaAlunos"></div>
+
+        </div>
+
+    </div>
+<script src="../js/aluno.js"></script>
 </body>
 </html>

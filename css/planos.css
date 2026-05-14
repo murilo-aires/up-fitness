@@ -185,3 +185,19 @@ a{
     text-decoration: none;
     color: rgb(0, 0, 0);
 }
+.titulo{
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.titulo h1{
+    font-size: 40px;
+    color: rgb(255, 208, 0);
+}
+
+.titulo p{
+    margin-top: 10px;
+    font-size: 18px;
+}
