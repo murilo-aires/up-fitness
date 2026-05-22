@@ -174,3 +174,154 @@
     transition: 0.3s;
     font-size: 25px;
 }
+/* =========================
+   SOLICITAÇÕES DE TREINO
+========================= */
+
+#listaSolicitacoes{
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+
+/* CARD DA SOLICITAÇÃO */
+.solicitacao-item{
+
+    background: rgba(255, 208, 0, 0.08);
+
+    border: 2px solid rgba(255, 208, 0, 0.35);
+
+    border-radius: 15px;
+
+    padding: 18px;
+
+    color: white;
+
+    transition: 0.3s;
+
+}
+
+
+
+/* HOVER */
+.solicitacao-item:hover{
+
+    transform: translateY(-3px);
+
+    border-color: gold;
+
+    background: rgba(255, 208, 0, 0.12);
+
+    box-shadow: 0 0 15px rgba(255,215,0,0.15);
+
+}
+
+
+
+/* NOME DO ALUNO */
+.solicitacao-item strong{
+
+    display: block;
+
+    font-size: 22px;
+
+    color: gold;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+/* TEXTOS */
+.solicitacao-item p{
+
+    margin: 10px 0;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    color: white;
+
+}
+
+
+
+/* LINHA */
+.solicitacao-item hr{
+
+    border: none;
+
+    height: 1px;
+
+    background: rgba(255,255,255,0.15);
+
+    margin-top: 15px;
+
+}
+
+
+
+/* RESPONSIVO */
+@media(max-width: 768px){
+
+    .solicitacao-item{
+
+        padding: 15px;
+
+    }
+
+    .solicitacao-item strong{
+
+        font-size: 20px;
+
+    }
+
+    .solicitacao-item p{
+
+        font-size: 15px;
+
+    }
+
+}
+/* BOTÃO EXCLUIR */
+.btn-excluir{
+
+    margin-top: 15px;
+
+    padding: 10px 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #ff3b3b;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+
+/* HOVER */
+.btn-excluir:hover{
+
+    background: #ff0000;
+
+    transform: scale(1.05);
+
+}

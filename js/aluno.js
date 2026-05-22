@@ -1,4 +1,3 @@
-// WINDOW ONLOAD ÚNICO
 window.onload = function(){
 
     // FOTO DE PERFIL
@@ -22,6 +21,15 @@ window.onload = function(){
 
     // CARREGAR ALUNOS
     carregarAlunos();
+
+    // CARREGAR SOLICITAÇÕES
+    carregarSolicitacoes();
+    
+    carregarAlunos();
+
+    carregarSolicitacoes();
+
+
 }
 
 
@@ -91,5 +99,85 @@ function carregarAlunos(){
 
         `;
     });
+
+}
+async function carregarSolicitacoes(){
+
+    const resposta =
+    await fetch("../php/listar_solicitacoes.php");
+
+    const solicitacoes =
+    await resposta.json();
+
+    const lista =
+    document.getElementById("listaSolicitacoes");
+
+    lista.innerHTML = "";
+
+    solicitacoes.forEach(solicitacao => {
+
+        lista.innerHTML += `
+
+        <div class="solicitacao-item">
+
+            <strong>
+                ${solicitacao.aluno_nome}
+            </strong>
+
+            <p>
+                <b>Objetivo:</b>
+                ${solicitacao.objetivo}
+            </p>
+
+            <p>
+                ${solicitacao.observacoes}
+            </p>
+
+            <button
+            class="btn-excluir"
+            onclick="excluirSolicitacao(${solicitacao.id})">
+
+                Excluir
+
+            </button>
+
+            <hr>
+
+        </div>
+
+        `;
+
+    });
+
+}
+async function excluirSolicitacao(id){
+
+    if(!confirm("Deseja excluir esta solicitação?")){
+
+        return;
+
+    }
+
+    const dados = new FormData();
+
+    dados.append("id", id);
+
+    const resposta = await fetch(
+
+        "../php/excluir_solicitacao.php",
+
+        {
+            method: "POST",
+            body: dados
+        }
+
+    );
+
+    const texto =
+    await resposta.text();
+
+    alert(texto);
+
+    carregarSolicitacoes();
 
 }

@@ -143,3 +143,38 @@ window.onload = function(){
     }
 
 }
+document
+.getElementById("formSolicitacao")
+
+.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const nome =
+    document.getElementById("nome").value;
+
+    const objetivo =
+    document.getElementById("objetivo").value;
+
+    const observacoes =
+    document.getElementById("observacoes").value;
+
+    const dados = new FormData();
+
+    dados.append("nome", nome);
+    dados.append("objetivo", objetivo);
+    dados.append("observacoes", observacoes);
+
+    const resposta = await fetch(
+        "../php/solicitar_treino.php",
+        {
+            method: "POST",
+            body: dados
+        }
+    );
+
+    const texto = await resposta.text();
+
+    alert(texto);
+
+});

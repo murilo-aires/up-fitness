@@ -9,22 +9,38 @@
 <body>
 
     <header class="header">
-            <nav class="nav">
+        <nav class="nav">
+
             <img src="../img/UP Academy.png" alt="" class="logo">
-                <ul class="nav-link">
-                    <li><a href="./treino.html" class="a">TREINO</a></li>
-                    <li><a href="../html/planos.html" class="a">PLANOS</a></li>
-                    <li><a href="./recursos.html" class="a">RECURSOS</a></li>
-                    <li><a href="./pagamentos.html" class="a">PAGAMENTOS</a></li>
-                </ul>
-                <li><a href="perfilaluno.html"><img src="../img/login.png" alt="" class="login-icon" id="loginFoto"></a></li>
-            </nav>
+
+            <ul class="nav-link">
+                <li><a href="./treino.html" class="a">TREINO</a></li>
+                <li><a href="../html/planos.html" class="a">PLANOS</a></li>
+                <li><a href="./recursos.html" class="a">RECURSOS</a></li>
+                <li><a href="./pagamentos.html" class="a">PAGAMENTOS</a></li>
+            </ul>
+
+            <li>
+                <a href="perfilaluno.html">
+                    <img src="../img/login.png"
+                    alt=""
+                    class="login-icon"
+                    id="loginFoto">
+                </a>
+            </li>
+
+        </nav>
     </header>
 
     <!-- TÍTULO -->
     <div class="titulo">
+
         <h1>Área de Treinos</h1>
-        <p>Solicite um treino ao professor ou crie o seu próprio treino.</p>
+
+        <p>
+            Solicite um treino ao professor ou crie o seu próprio treino.
+        </p>
+
     </div>
 
     <!-- CONTAINER -->
@@ -39,25 +55,42 @@
                 Envie suas informações para receber um treino personalizado.
             </p>
 
-            <form>
+            <!-- FORMULÁRIO -->
+            <form id="formSolicitacao">
 
-                <input type="text" placeholder="Seu nome">
+    <input
+    type="text"
+    id="nome"
+    placeholder="Seu nome">
 
-                <select>
-                    <option>Objetivo</option>
-                    <option>Hipertrofia</option>
-                    <option>Emagrecimento</option>
-                    <option>Condicionamento físico</option>
-                    <option>Ganho de força</option>
-                </select>
+    <select id="objetivo">
 
-                <textarea placeholder="Fale sobre suas dificuldades ou preferências"></textarea>
+        <option>Hipertrofia</option>
+        <option>Emagrecimento</option>
+        <option>Condicionamento físico</option>
+        <option>Ganho de força</option>
 
-                <button type="submit">
-                    Solicitar Treino
-                </button>
+    </select>
 
-            </form>
+    <!-- PROFESSORES -->
+    <select id="professor">
+
+        <option value="">
+            Selecione o professor
+        </option>
+
+    </select>
+
+    <textarea
+    id="observacoes"
+    placeholder="Fale sobre suas dificuldades">
+    </textarea>
+
+    <button type="submit">
+        Solicitar Treino
+    </button>
+
+</form>
 
         </div>
 
@@ -72,18 +105,31 @@
 
             <form id="formTreino">
 
-                <input type="text" id="exercicio" placeholder="Nome do exercício">
+                <input
+                type="text"
+                id="exercicio"
+                placeholder="Nome do exercício">
 
-                <input type="text" id="series" placeholder="Séries e repetições">
+                <input
+                type="text"
+                id="series"
+                placeholder="Séries e repetições">
 
-                <button type="button" onclick="adicionarTreino()">
+                <button
+                type="button"
+                onclick="adicionarTreino()">
+
                     Adicionar Exercício
+
                 </button>
 
             </form>
 
             <!-- LISTA -->
-            <div class="treino-lista" id="listaTreino"></div>
+            <div
+            class="treino-lista"
+            id="listaTreino">
+            </div>
 
         </div>
 
