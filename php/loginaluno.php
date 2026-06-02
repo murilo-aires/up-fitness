@@ -24,11 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </script>";
             exit();
         } else {
-            echo "Senha incorreta!";
+            echo 'Senha incorreta!';
         }
 
     } else {
-        echo "Matrícula não encontrada!";
+        echo 'Matrícula não encontrada!';
     }
 }
 ?>

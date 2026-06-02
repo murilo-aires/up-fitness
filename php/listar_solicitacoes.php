@@ -2,7 +2,12 @@
 
 include("conexao.php");
 
-$sql = "SELECT * FROM solicitacoes_treino";
+$professor = $_GET['professor'];
+
+$sql = "SELECT *
+        FROM solicitacoes_treino
+        WHERE professor_id = '$professor'
+        ORDER BY data_solicitacao DESC";
 
 $result = $conn->query($sql);
 

@@ -7,8 +7,6 @@ const diasSemana = [
     "Sex"
 ];
 
-
-
 // WINDOW ONLOAD ÚNICO
 window.onload = function(){
 
@@ -34,8 +32,6 @@ window.onload = function(){
     // CARREGAR ALUNOS
     carregarAlunos();
 };
-
-
 
 // MOSTRAR ALUNOS
 function carregarAlunos(){
@@ -116,6 +112,13 @@ function carregarAlunos(){
 
                         </button>
 
+                        <button class="limpar"
+                        onclick="limpar('${aluno.matricula}')">
+
+                            Limpar
+
+                        </button>
+
                     </div>
 
                 </div>
@@ -131,8 +134,6 @@ function carregarAlunos(){
         `;
     });
 }
-
-
 
 // PEGAR DIA ATUAL
 function diaAtual(){
@@ -151,8 +152,6 @@ function diaAtual(){
 
     return dias[hoje];
 }
-
-
 
 // MARCAR PRESENTE
 function marcar(matricula){
@@ -177,8 +176,6 @@ function marcar(matricula){
     carregarAlunos();
 }
 
-
-
 // MARCAR FALTA
 function falta(matricula){
 
@@ -198,6 +195,24 @@ function falta(matricula){
         "Falta"
 
     );
+
+    carregarAlunos();
+}
+
+// LIMPAR TODA A SEMANA DO ALUNO
+function limpar(matricula){
+
+    if(!confirm("Deseja realmente limpar toda a frequência deste aluno?")){
+        return;
+    }
+
+    diasSemana.forEach((dia) => {
+
+        localStorage.removeItem(
+            "freq_" + matricula + "_" + dia
+        );
+
+    });
 
     carregarAlunos();
 }

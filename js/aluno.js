@@ -19,16 +19,9 @@ window.onload = function(){
         }
     }
 
-    // CARREGAR ALUNOS
+    // CARREGAR DADOS
     carregarAlunos();
-
-    // CARREGAR SOLICITAÇÕES
     carregarSolicitacoes();
-    
-    carregarAlunos();
-
-    carregarSolicitacoes();
-
 
 }
 
@@ -46,8 +39,8 @@ function adicionarAluno(){
     if(nome === "" || matricula === ""){
 
         alert("Preencha todos os campos!");
-
         return;
+
     }
 
     let alunos =
@@ -69,6 +62,7 @@ function adicionarAluno(){
 
     document.getElementById("nomeAluno").value = "";
     document.getElementById("matriculaAluno").value = "";
+
 }
 
 
@@ -101,10 +95,19 @@ function carregarAlunos(){
     });
 
 }
+
+
+
+// MOSTRAR SOMENTE AS SOLICITAÇÕES DO PROFESSOR LOGADO
 async function carregarSolicitacoes(){
 
+    const matriculaProfessor =
+    localStorage.getItem("matricula");
+
     const resposta =
-    await fetch("../php/listar_solicitacoes.php");
+    await fetch(
+        `../php/listar_solicitacoes.php?professor=${matriculaProfessor}`
+    );
 
     const solicitacoes =
     await resposta.json();
@@ -150,6 +153,9 @@ async function carregarSolicitacoes(){
     });
 
 }
+
+
+// EXCLUIR SOLICITAÇÃO
 async function excluirSolicitacao(id){
 
     if(!confirm("Deseja excluir esta solicitação?")){

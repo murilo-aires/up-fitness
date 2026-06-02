@@ -150,14 +150,15 @@ async function carregarProfessores(){
     const select =
     document.getElementById("professor");
 
+    select.innerHTML =
+    '<option value="">Selecione o professor</option>';
+
     professores.forEach(professor => {
 
         select.innerHTML += `
-
             <option value="${professor.matricula}">
                 ${professor.nome}
             </option>
-
         `;
 
     });
@@ -169,7 +170,6 @@ async function carregarProfessores(){
 // ENVIAR SOLICITAÇÃO
 document
 .getElementById("formSolicitacao")
-
 .addEventListener("submit", async function(e){
 
     e.preventDefault();
@@ -186,30 +186,43 @@ document
     const professor =
     document.getElementById("professor").value;
 
+    if(professor === ""){
+
+        alert("Selecione um professor.");
+
+        return;
+
+    }
+
     const dados = new FormData();
 
     dados.append("nome", nome);
-
     dados.append("objetivo", objetivo);
-
     dados.append("observacoes", observacoes);
-
     dados.append("professor", professor);
 
-    const resposta = await fetch(
+    try{
 
-        "../php/solicitar_treino.php",
+        const resposta = await fetch(
+            "../php/solicitar_treino.php",
+            {
+                method: "POST",
+                body: dados
+            }
+        );
 
-        {
-            method: "POST",
-            body: dados
-        }
+        const texto =
+        await resposta.text();
 
-    );
+        alert(texto);
 
-    const texto =
-    await resposta.text();
+        document.getElementById("formSolicitacao").reset();
 
-    alert(texto);
+    }catch(error){
+
+        console.error(error);
+        alert("Erro ao enviar solicitação.");
+
+    }
 
 });
