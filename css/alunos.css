@@ -325,3 +325,27 @@
     transform: scale(1.05);
 
 }
+.aluno-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255, 196, 0, 0.2);
+    border-left:4px solid #ffd700;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:10px;
+}
+
+.btnExcluir{
+    background:#ff3b3b;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.btnExcluir:hover{
+    background:#d60000;
+}

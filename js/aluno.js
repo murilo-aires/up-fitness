@@ -13,17 +13,16 @@ window.onload = function(){
         localStorage.getItem("foto_" + matricula);
 
         if(fotoSalva){
-
             loginFoto.src = fotoSalva;
-
         }
     }
 
     // CARREGAR DADOS
     carregarAlunos();
     carregarSolicitacoes();
+    carregarSelectAlunos();
 
-}
+};
 
 
 
@@ -31,37 +30,47 @@ window.onload = function(){
 function adicionarAluno(){
 
     let nome =
-    document.getElementById("nomeAluno").value;
+    document.getElementById("nomeAluno").value.trim();
 
-    let matricula =
-    document.getElementById("matriculaAluno").value;
+    let matriculaAluno =
+    document.getElementById("matriculaAluno").value.trim();
 
-    if(nome === "" || matricula === ""){
+    if(nome === "" || matriculaAluno === ""){
 
         alert("Preencha todos os campos!");
         return;
 
     }
 
+    const matriculaProfessor =
+    localStorage.getItem("matricula");
+
     let alunos =
-    JSON.parse(localStorage.getItem("alunos")) || [];
+    JSON.parse(
+        localStorage.getItem(
+            "alunos_" + matriculaProfessor
+        )
+    ) || [];
 
     alunos.push({
 
         nome: nome,
-        matricula: matricula
+        matricula: matriculaAluno
 
     });
 
     localStorage.setItem(
-        "alunos",
-        JSON.stringify(alunos)
-    );
 
-    carregarAlunos();
+        "alunos_" + matriculaProfessor,
+
+        JSON.stringify(alunos)
+
+    );
 
     document.getElementById("nomeAluno").value = "";
     document.getElementById("matriculaAluno").value = "";
+
+    carregarAlunos();
 
 }
 
@@ -70,29 +79,84 @@ function adicionarAluno(){
 // MOSTRAR ALUNOS
 function carregarAlunos(){
 
-    let lista =
+    const lista =
     document.getElementById("listaAlunos");
 
     lista.innerHTML = "";
 
-    let alunos =
-    JSON.parse(localStorage.getItem("alunos")) || [];
+    const matriculaProfessor =
+    localStorage.getItem("matricula");
 
-    alunos.forEach((aluno) => {
+    let alunos =
+    JSON.parse(
+        localStorage.getItem(
+            "alunos_" + matriculaProfessor
+        )
+    ) || [];
+
+    alunos.forEach(aluno => {
 
         lista.innerHTML += `
-        
-            <div class="aluno">
 
-                <strong>${aluno.nome}</strong><br>
+            <div class="aluno-card">
 
-                Matrícula:
-                ${aluno.matricula}
+                <div>
+
+                    <strong>${aluno.nome}</strong><br>
+
+                    Matrícula:
+                    ${aluno.matricula}
+
+                </div>
+
+                <button
+                    class="btnExcluir"
+                    onclick="excluirAluno('${aluno.matricula}')">
+
+                    X
+
+                </button>
 
             </div>
 
         `;
+
     });
+
+}
+
+
+
+// EXCLUIR ALUNO
+function excluirAluno(matriculaAluno){
+
+    if(!confirm("Deseja excluir este aluno?")){
+        return;
+    }
+
+    const matriculaProfessor =
+    localStorage.getItem("matricula");
+
+    let alunos =
+    JSON.parse(
+        localStorage.getItem(
+            "alunos_" + matriculaProfessor
+        )
+    ) || [];
+
+    alunos = alunos.filter(aluno =>
+        aluno.matricula !== matriculaAluno
+    );
+
+    localStorage.setItem(
+
+        "alunos_" + matriculaProfessor,
+
+        JSON.stringify(alunos)
+
+    );
+
+    carregarAlunos();
 
 }
 
@@ -104,86 +168,196 @@ async function carregarSolicitacoes(){
     const matriculaProfessor =
     localStorage.getItem("matricula");
 
-    const resposta =
-    await fetch(
-        `../php/listar_solicitacoes.php?professor=${matriculaProfessor}`
-    );
+    try{
 
-    const solicitacoes =
-    await resposta.json();
+        const resposta =
+        await fetch(
+            `../php/listar_solicitacoes.php?professor=${matriculaProfessor}`
+        );
 
-    const lista =
-    document.getElementById("listaSolicitacoes");
+        const solicitacoes =
+        await resposta.json();
 
-    lista.innerHTML = "";
+        const lista =
+        document.getElementById("listaSolicitacoes");
 
-    solicitacoes.forEach(solicitacao => {
+        lista.innerHTML = "";
 
-        lista.innerHTML += `
+        solicitacoes.forEach(solicitacao => {
+lista.innerHTML += `
 
-        <div class="solicitacao-item">
+    <div class="solicitacao-item">
 
-            <strong>
-                ${solicitacao.aluno_nome}
-            </strong>
+        <strong>
+            ${solicitacao.aluno_nome}
+        </strong>
 
-            <p>
-                <b>Objetivo:</b>
-                ${solicitacao.objetivo}
-            </p>
+        <p>
+            <b>Objetivo:</b>
+            ${solicitacao.objetivo}
+        </p>
 
-            <p>
-                ${solicitacao.observacoes}
-            </p>
+        <p>
+            ${solicitacao.observacoes}
+        </p>
+
+        <div class="acoes-solicitacao">
 
             <button
-            class="btn-excluir"
-            onclick="excluirSolicitacao(${solicitacao.id})">
+                class="btn-criar"
+                onclick="criarTreino(${solicitacao.id})">
+
+                Criar Treino
+
+            </button>
+
+            <button
+                class="btn-excluir"
+                onclick="excluirSolicitacao(${solicitacao.id})">
 
                 Excluir
 
             </button>
 
-            <hr>
-
         </div>
 
-        `;
+        <hr>
 
-    });
+    </div>
+
+`;
+
+        });
+
+    }catch(erro){
+
+        console.error(
+            "Erro ao carregar solicitações:",
+            erro
+        );
+
+    }
 
 }
+
 
 
 // EXCLUIR SOLICITAÇÃO
 async function excluirSolicitacao(id){
 
     if(!confirm("Deseja excluir esta solicitação?")){
-
         return;
-
     }
 
-    const dados = new FormData();
+    const dados =
+    new FormData();
 
     dados.append("id", id);
 
-    const resposta = await fetch(
+    try{
 
-        "../php/excluir_solicitacao.php",
+        const resposta =
+        await fetch(
 
-        {
-            method: "POST",
-            body: dados
+            "../php/excluir_solicitacao.php",
+
+            {
+                method: "POST",
+                body: dados
+            }
+
+        );
+
+        const texto =
+        await resposta.text();
+
+        alert(texto);
+
+        carregarSolicitacoes();
+
+    }catch(erro){
+
+        alert("Erro ao excluir solicitação.");
+
+        console.error(erro);
+
+    }
+
+}
+function carregarSelectAlunos(){
+
+    const select =
+    document.getElementById("alunoTreino");
+
+    if(!select) return;
+
+    const matriculaProfessor =
+    localStorage.getItem("matricula");
+
+    const alunos =
+    JSON.parse(
+        localStorage.getItem(
+            "alunos_" + matriculaProfessor
+        )
+    ) || [];
+
+    select.innerHTML =
+    '<option value="">Selecione um aluno</option>';
+
+    alunos.forEach(aluno => {
+
+        select.innerHTML += `
+
+            <option value="${aluno.matricula}">
+                ${aluno.nome}
+            </option>
+
+        `;
+
+    });
+
+}
+async function criarTreino(idSolicitacao){
+
+    const matriculaProfessor =
+    localStorage.getItem("matricula");
+
+    try{
+
+        const resposta =
+        await fetch(
+            `../php/listar_solicitacoes.php?professor=${matriculaProfessor}`
+        );
+
+        const solicitacoes =
+        await resposta.json();
+
+        const solicitacao =
+        solicitacoes.find(
+            s => s.id == idSolicitacao
+        );
+
+        if(!solicitacao){
+
+            alert("Solicitação não encontrada.");
+            return;
+
         }
 
-    );
+        matriculaAlunoSelecionado =
+        solicitacao.matricula_aluno;
 
-    const texto =
-    await resposta.text();
+        document.getElementById("cardTreino")
+        .style.display = "block";
 
-    alert(texto);
+    }catch(erro){
 
-    carregarSolicitacoes();
+        console.error(erro);
+
+        alert(
+            "Erro ao abrir formulário do treino."
+        );
+
+    }
 
 }

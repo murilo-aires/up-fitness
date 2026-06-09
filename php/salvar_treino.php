@@ -2,45 +2,37 @@
 
 include("conexao.php");
 
+$matricula_aluno = $_POST['matricula_aluno'] ?? '';
+$matricula_professor = $_POST['matricula_professor'] ?? '';
+$nome_treino = $_POST['nome_treino'] ?? '';
+$exercicios = $_POST['exercicios'] ?? '';
 
-
-// DADOS
-$aluno = $_POST['aluno'];
-
-$exercicio = $_POST['exercicio'];
-
-$series = $_POST['series'];
-
-$matricula = $_POST['matricula'];
-
-
-
-// VALIDAR CAMPOS
 if(
-    empty($aluno) ||
-    empty($exercicio) ||
-    empty($series) ||
-    empty($matricula)
+    empty($matricula_aluno) ||
+    empty($matricula_professor) ||
+    empty($nome_treino) ||
+    empty($exercicios)
 ){
 
     echo "Preencha todos os campos.";
-
     exit;
 
 }
 
-
-
-// INSERIR TREINO
-$sql = "INSERT INTO treinos_alunos
-
-(aluno_nome, exercicio, series, matricula_aluno)
-
+$sql = "INSERT INTO treinos
+(
+    matricula_aluno,
+    matricula_professor,
+    nome_treino,
+    exercicios
+)
 VALUES
-
-('$aluno', '$exercicio', '$series', '$matricula')";
-
-
+(
+    '$matricula_aluno',
+    '$matricula_professor',
+    '$nome_treino',
+    '$exercicios'
+)";
 
 if($conn->query($sql)){
 
@@ -48,8 +40,6 @@ if($conn->query($sql)){
 
 }else{
 
-    echo "Erro ao salvar treino: " . $conn->error;
+    echo "Erro: " . $conn->error;
 
 }
-
-?>

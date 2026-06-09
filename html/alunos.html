@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +7,28 @@
     <link rel="stylesheet" href="../css/alunos.css">
 </head>
 <body>
+
     <header class="header">
-    <nav class="nav">
-        <img src="../img/UP Academy.png" class="logo">
+        <nav class="nav">
 
-        <ul class="nav-link">
-            <li><a href="./alunos.html" class="a">ALUNOS</a></li>
-            <li><a href="./frequencia.html" class="a">FREQUÊNCIA</a></li>
-            <li><a href="./anotações.html" class="a">ANOTAÇÕES</a></li>
-        </ul>
+            <img src="../img/UP Academy.png" class="logo">
 
-        <li>
-            <a href="perfilprof.html">
-                <img src="../img/login.png" class="login-icon" id="loginFoto">
-            </a>
-        </li>
-    </nav>
+            <ul class="nav-link">
+                <li><a href="./alunos.html" class="a">ALUNOS</a></li>
+                <li><a href="./frequencia.html" class="a">FREQUÊNCIA</a></li>
+                <li><a href="./anotações.html" class="a">ANOTAÇÕES</a></li>
+            </ul>
+
+            <li style="list-style: none;">
+                <a href="perfilprof.html">
+                    <img src="../img/login.png"
+                         class="login-icon"
+                         id="loginFoto">
+                </a>
+            </li>
+
+        </nav>
     </header>
-
-
 
     <!-- TÍTULO -->
     <div class="titulo">
@@ -45,13 +48,23 @@
                 Cadastre novos alunos para acompanhamento personalizado.
             </p>
 
-            <form>
+            <form onsubmit="return false;">
 
-                <input type="text" placeholder="Nome do aluno" id="nomeAluno">
+                <input
+                    type="text"
+                    placeholder="Nome do aluno"
+                    id="nomeAluno"
+                >
 
-                <input type="text" placeholder="Matrícula" id="matriculaAluno">
+                <input
+                    type="text"
+                    placeholder="Matrícula"
+                    id="matriculaAluno"
+                >
 
-                <button type="button" onclick="adicionarAluno()">
+                <button
+                    type="button"
+                    onclick="adicionarAluno()">
                     Adicionar Aluno
                 </button>
 
@@ -68,21 +81,59 @@
                 Visualize todos os alunos cadastrados.
             </p>
 
-            <div class="lista-alunos" id="listaAlunos"></div>
+            <div
+                class="lista-alunos"
+                id="listaAlunos">
+            </div>
 
         </div>
 
         <!-- SOLICITAÇÕES -->
         <div class="card">
 
-    <h2>Solicitações de Treino</h2>
+            <h2>Solicitações de Treino</h2>
 
-    <div id="listaSolicitacoes"></div>
+            <p>
+                Os alunos podem solicitar novos treinos.
+            </p>
 
-</div>
+            <div id="listaSolicitacoes"></div>
+
+        </div>
+
+        <!-- FORMULÁRIO DE TREINO -->
+        <div class="card" id="cardTreino" style="display:none;">
+
+            <h2>Criar Treino</h2>
+
+            <input
+                type="hidden"
+                id="idSolicitacao"
+            >
+
+            <input
+                type="text"
+                id="nomeTreino"
+                placeholder="Nome do treino"
+            >
+
+            <textarea
+                id="exerciciosTreino"
+                rows="10"
+                placeholder="Digite os exercícios&#10;Exemplo:&#10;Supino 4x10&#10;Agachamento 4x12&#10;Rosca Direta 3x15">
+            </textarea>
+
+            <button
+                type="button"
+                onclick="salvarTreino()">
+                Enviar Treino
+            </button>
+
+        </div>
 
     </div>
-    
-<script src="../js/aluno.js"></script>
+
+    <script src="../js/aluno.js"></script>
+
 </body>
 </html>

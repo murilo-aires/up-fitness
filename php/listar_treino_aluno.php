@@ -2,10 +2,12 @@
 
 include("conexao.php");
 
-$matricula = $_GET['matricula'];
+$matricula = $_GET["matricula"];
 
-$sql = "SELECT * FROM treinos_alunos
-WHERE matricula_aluno = '$matricula'";
+$sql = "SELECT *
+        FROM treinos_alunos
+        WHERE matricula_aluno = '$matricula'
+        ORDER BY id DESC";
 
 $result = $conn->query($sql);
 

@@ -74,49 +74,68 @@ function adicionarTreino(){
 
 }
 
+async function carregarTreinos(){
 
+    const matricula =
+    localStorage.getItem("matricula");
 
-// MOSTRAR TREINOS
-function carregarTreinos(){
-
-    let lista =
+    const lista =
     document.getElementById("listaTreino");
 
     lista.innerHTML = "";
 
-    let treinos =
-    JSON.parse(localStorage.getItem("treinos")) || [];
+    try{
 
-    treinos.forEach((treino, index) => {
+        const resposta =
+        await fetch(
+            "../php/listar_treinos.php?matricula=" +
+            matricula
+        );
 
-        lista.innerHTML += `
+        const treinos =
+        await resposta.json();
 
-            <div class="treino-item">
+        if(treinos.length === 0){
 
-                <strong>
-                    ${treino.exercicio}
-                </strong>
+            lista.innerHTML = `
+                <p>
+                    Nenhum treino enviado pelo professor.
+                </p>
+            `;
 
-                <br>
+            return;
+        }
 
-                ${treino.series}
+        treinos.forEach(treino => {
 
-                <button
-                class="btn-remover"
-                onclick="removerTreino(${index})">
+            lista.innerHTML += `
 
-                    Remover
+                <div class="treino-item">
 
-                </button>
+                    <h3>
+                        ${treino.exercicio}
+                    </h3>
 
-            </div>
+                    <p>
+                        ${treino.series}
+                    </p>
 
-        `;
+                </div>
 
-    });
+            `;
+
+        });
+
+    }catch(error){
+
+        console.error(error);
+
+        lista.innerHTML =
+        "<p>Erro ao carregar treino.</p>";
+
+    }
 
 }
-
 
 
 // REMOVER TREINO
