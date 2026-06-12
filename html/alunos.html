@@ -8,132 +8,127 @@
 </head>
 <body>
 
-    <header class="header">
-        <nav class="nav">
+<header class="header">
+    <nav class="nav">
 
-            <img src="../img/UP Academy.png" class="logo">
+        <img src="../img/UP Academy.png" class="logo">
 
-            <ul class="nav-link">
-                <li><a href="./alunos.html" class="a">ALUNOS</a></li>
-                <li><a href="./frequencia.html" class="a">FREQUÊNCIA</a></li>
-                <li><a href="./anotações.html" class="a">ANOTAÇÕES</a></li>
-            </ul>
+        <ul class="nav-link">
+            <li><a href="./alunos.html" class="a">ALUNOS</a></li>
+            <li><a href="./frequencia.html" class="a">FREQUÊNCIA</a></li>
+            <li><a href="./anotações.html" class="a">ANOTAÇÕES</a></li>
+        </ul>
 
-            <li style="list-style: none;">
-                <a href="perfilprof.html">
-                    <img src="../img/login.png"
-                         class="login-icon"
-                         id="loginFoto">
-                </a>
-            </li>
+        <a href="perfilprof.html">
+            <img src="../img/login.png"
+                 class="login-icon"
+                 id="loginFoto">
+        </a>
 
-        </nav>
-    </header>
+    </nav>
+</header>
 
-    <!-- TÍTULO -->
-    <div class="titulo">
-        <h1>Área do Professor</h1>
-        <p>Gerencie alunos e acompanhe os treinos da academia.</p>
-    </div>
+<div class="titulo">
+    <h1>Área do Professor</h1>
+    <p>Gerencie alunos e acompanhe os treinos da academia.</p>
+</div>
 
-    <!-- CONTAINER -->
-    <div class="container">
+<div class="container">
 
-        <!-- ADICIONAR ALUNO -->
-        <div class="card">
+    <!-- ADICIONAR ALUNO -->
+    <div class="card">
 
-            <h2>Adicionar Aluno</h2>
+        <h2>Adicionar Aluno</h2>
 
-            <p>
-                Cadastre novos alunos para acompanhamento personalizado.
-            </p>
+        <p>
+            Cadastre novos alunos para acompanhamento personalizado.
+        </p>
 
-            <form onsubmit="return false;">
-
-                <input
-                    type="text"
-                    placeholder="Nome do aluno"
-                    id="nomeAluno"
-                >
-
-                <input
-                    type="text"
-                    placeholder="Matrícula"
-                    id="matriculaAluno"
-                >
-
-                <button
-                    type="button"
-                    onclick="adicionarAluno()">
-                    Adicionar Aluno
-                </button>
-
-            </form>
-
-        </div>
-
-        <!-- LISTA DE ALUNOS -->
-        <div class="card">
-
-            <h2>Alunos Adicionados</h2>
-
-            <p>
-                Visualize todos os alunos cadastrados.
-            </p>
-
-            <div
-                class="lista-alunos"
-                id="listaAlunos">
-            </div>
-
-        </div>
-
-        <!-- SOLICITAÇÕES -->
-        <div class="card">
-
-            <h2>Solicitações de Treino</h2>
-
-            <p>
-                Os alunos podem solicitar novos treinos.
-            </p>
-
-            <div id="listaSolicitacoes"></div>
-
-        </div>
-
-        <!-- FORMULÁRIO DE TREINO -->
-        <div class="card" id="cardTreino" style="display:none;">
-
-            <h2>Criar Treino</h2>
-
-            <input
-                type="hidden"
-                id="idSolicitacao"
-            >
+        <form onsubmit="return false;">
 
             <input
                 type="text"
-                id="nomeTreino"
-                placeholder="Nome do treino"
-            >
+                placeholder="Nome do aluno"
+                id="nomeAluno">
 
-            <textarea
-                id="exerciciosTreino"
-                rows="10"
-                placeholder="Digite os exercícios&#10;Exemplo:&#10;Supino 4x10&#10;Agachamento 4x12&#10;Rosca Direta 3x15">
-            </textarea>
+            <input
+                type="text"
+                placeholder="Matrícula"
+                id="matriculaAluno">
 
             <button
                 type="button"
-                onclick="salvarTreino()">
-                Enviar Treino
+                onclick="adicionarAluno()">
+                Adicionar Aluno
             </button>
 
+        </form>
+
+    </div>
+
+    <!-- LISTA -->
+    <div class="card">
+
+        <h2>Alunos Adicionados</h2>
+
+        <p>
+            Visualize todos os alunos cadastrados.
+        </p>
+
+        <div
+            class="lista-alunos"
+            id="listaAlunos">
         </div>
 
     </div>
 
-    <script src="../js/aluno.js"></script>
+    <!-- SOLICITAÇÕES -->
+    <div class="card">
+
+        <h2>Solicitações de Treino</h2>
+
+        <p>
+            Os alunos podem solicitar novos treinos.
+        </p>
+
+        <div id="listaSolicitacoes"></div>
+
+    </div>
+
+    <!-- CRIAR TREINO -->
+    <div
+        class="card"
+        id="cardTreino"
+        style="display:none;">
+
+        <h2>Criar Treino</h2>
+
+        <input
+            type="hidden"
+            id="idSolicitacao">
+
+        <input
+            type="text"
+            id="nomeTreino"
+            placeholder="Nome do treino">
+
+        <textarea
+            id="exerciciosTreino"
+            rows="10"
+            placeholder="Digite os exercícios&#10;Exemplo:&#10;Supino 4x10&#10;Agachamento 4x12&#10;Rosca Direta 3x15">
+        </textarea>
+
+        <button
+            type="button"
+            onclick="salvarTreino()">
+            Enviar Treino
+        </button>
+
+    </div>
+
+</div>
+
+<script src="../js/aluno.js"></script>
 
 </body>
 </html>

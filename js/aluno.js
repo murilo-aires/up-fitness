@@ -317,6 +317,8 @@ function carregarSelectAlunos(){
     });
 
 }
+let matriculaAlunoSelecionado = "";
+
 async function criarTreino(idSolicitacao){
 
     const matriculaProfessor =
@@ -347,15 +349,91 @@ async function criarTreino(idSolicitacao){
         matriculaAlunoSelecionado =
         solicitacao.matricula_aluno;
 
+        document.getElementById("idSolicitacao").value =
+        idSolicitacao;
+
         document.getElementById("cardTreino")
         .style.display = "block";
+
+        document.getElementById("cardTreino")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
 
     }catch(erro){
 
         console.error(erro);
 
         alert(
-            "Erro ao abrir formulário do treino."
+            "Erro ao abrir formulário."
+        );
+
+    }
+
+}
+async function salvarTreino(){
+
+    const nomeTreino =
+    document.getElementById("nomeTreino").value.trim();
+
+    const exercicios =
+    document.getElementById("exerciciosTreino").value.trim();
+
+    if(
+        nomeTreino === "" ||
+        exercicios === ""
+    ){
+
+        alert("Preencha todos os campos.");
+        return;
+
+    }
+
+    const dados =
+    new FormData();
+
+    dados.append(
+        "matricula_aluno",
+        matriculaAlunoSelecionado
+    );
+
+    dados.append(
+        "matricula_professor",
+        localStorage.getItem("matricula")
+    );
+
+    dados.append(
+        "nome_treino",
+        nomeTreino
+    );
+
+    dados.append(
+        "exercicios",
+        exercicios
+    );
+
+    try{
+
+        const resposta =
+        await fetch(
+            "../php/salvar_treino.php",
+            {
+                method: "POST",
+                body: dados
+            }
+        );
+
+        const texto =
+        await resposta.text();
+
+        alert(texto);
+
+    }catch(erro){
+
+        console.error(erro);
+
+        alert(
+            "Erro ao salvar treino."
         );
 
     }

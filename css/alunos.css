@@ -349,3 +349,27 @@
 .btnExcluir:hover{
     background:#d60000;
 }
+#cardTreino{
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#cardTreino input,
+#cardTreino textarea{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#cardTreino textarea{
+    min-height: 200px;
+    resize: vertical;
+}
+
+#cardTreino button{
+    width: 100%;
+}

@@ -265,3 +265,12 @@ body{
     font-size: 14px;
     color: #aaa;
 }
+.btn-remover{
+    background: #ff3b3b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}

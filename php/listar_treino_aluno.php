@@ -5,7 +5,7 @@ include("conexao.php");
 $matricula = $_GET["matricula"];
 
 $sql = "SELECT *
-        FROM treinos_alunos
+        FROM treinos
         WHERE matricula_aluno = '$matricula'
         ORDER BY id DESC";
 

@@ -1,6 +1,5 @@
 window.onload = function(){
 
-    // FOTO DE PERFIL
     const matricula =
     localStorage.getItem("matricula");
 
@@ -13,67 +12,19 @@ window.onload = function(){
         localStorage.getItem("foto_" + matricula);
 
         if(fotoSalva){
-
             loginFoto.src = fotoSalva;
-
         }
+
     }
 
-    // CARREGAR TREINOS
     carregarTreinos();
-
-    // CARREGAR PROFESSORES
     carregarProfessores();
 
 }
 
 
 
-// ADICIONAR TREINO
-function adicionarTreino(){
-
-    let exercicio =
-    document.getElementById("exercicio").value;
-
-    let series =
-    document.getElementById("series").value;
-
-    if(exercicio === "" || series === ""){
-
-        alert("Preencha todos os campos!");
-
-        return;
-
-    }
-
-    // PEGAR TREINOS
-    let treinos =
-    JSON.parse(localStorage.getItem("treinos")) || [];
-
-    // ADICIONAR NOVO
-    treinos.push({
-
-        exercicio: exercicio,
-        series: series
-
-    });
-
-    // SALVAR
-    localStorage.setItem(
-        "treinos",
-        JSON.stringify(treinos)
-    );
-
-    // ATUALIZAR LISTA
-    carregarTreinos();
-
-    // LIMPAR INPUTS
-    document.getElementById("exercicio").value = "";
-
-    document.getElementById("series").value = "";
-
-}
-
+// CARREGAR TREINOS DO PROFESSOR
 async function carregarTreinos(){
 
     const matricula =
@@ -88,8 +39,7 @@ async function carregarTreinos(){
 
         const resposta =
         await fetch(
-            "../php/listar_treinos.php?matricula=" +
-            matricula
+            `../php/listar_treino_aluno.php?matricula=${matricula}`
         );
 
         const treinos =
@@ -98,12 +48,15 @@ async function carregarTreinos(){
         if(treinos.length === 0){
 
             lista.innerHTML = `
+
                 <p>
                     Nenhum treino enviado pelo professor.
                 </p>
+
             `;
 
             return;
+
         }
 
         treinos.forEach(treino => {
@@ -113,12 +66,20 @@ async function carregarTreinos(){
                 <div class="treino-item">
 
                     <h3>
-                        ${treino.exercicio}
+                        ${treino.nome_treino}
                     </h3>
 
-                    <p>
-                        ${treino.series}
-                    </p>
+                    <pre>
+${treino.exercicios}
+                    </pre>
+
+                    <button
+                        class="btn-remover"
+                        onclick="excluirTreino(${treino.id})">
+
+                        Excluir
+
+                    </button>
 
                 </div>
 
@@ -126,104 +87,36 @@ async function carregarTreinos(){
 
         });
 
-    }catch(error){
+    }catch(erro){
 
-        console.error(error);
+        console.error(erro);
 
         lista.innerHTML =
-        "<p>Erro ao carregar treino.</p>";
+        "<p>Erro ao carregar treinos.</p>";
 
     }
 
 }
 
 
-// REMOVER TREINO
-function removerTreino(index){
 
-    let treinos =
-    JSON.parse(localStorage.getItem("treinos")) || [];
+// EXCLUIR TREINO
+async function excluirTreino(id){
 
-    treinos.splice(index, 1);
-
-    localStorage.setItem(
-        "treinos",
-        JSON.stringify(treinos)
-    );
-
-    carregarTreinos();
-
-}
-
-
-
-// CARREGAR PROFESSORES
-async function carregarProfessores(){
-
-    const resposta =
-    await fetch("../php/listar_professores.php");
-
-    const professores =
-    await resposta.json();
-
-    const select =
-    document.getElementById("professor");
-
-    select.innerHTML =
-    '<option value="">Selecione o professor</option>';
-
-    professores.forEach(professor => {
-
-        select.innerHTML += `
-            <option value="${professor.matricula}">
-                ${professor.nome}
-            </option>
-        `;
-
-    });
-
-}
-
-
-
-// ENVIAR SOLICITAÇÃO
-document
-.getElementById("formSolicitacao")
-.addEventListener("submit", async function(e){
-
-    e.preventDefault();
-
-    const nome =
-    document.getElementById("nome").value;
-
-    const objetivo =
-    document.getElementById("objetivo").value;
-
-    const observacoes =
-    document.getElementById("observacoes").value;
-
-    const professor =
-    document.getElementById("professor").value;
-
-    if(professor === ""){
-
-        alert("Selecione um professor.");
-
+    if(!confirm("Deseja excluir este treino?")){
         return;
-
     }
 
-    const dados = new FormData();
+    const dados =
+    new FormData();
 
-    dados.append("nome", nome);
-    dados.append("objetivo", objetivo);
-    dados.append("observacoes", observacoes);
-    dados.append("professor", professor);
+    dados.append("id", id);
 
     try{
 
-        const resposta = await fetch(
-            "../php/solicitar_treino.php",
+        const resposta =
+        await fetch(
+            "../php/excluir_treino.php",
             {
                 method: "POST",
                 body: dados
@@ -235,13 +128,14 @@ document
 
         alert(texto);
 
-        document.getElementById("formSolicitacao").reset();
+        carregarTreinos();
 
-    }catch(error){
+    }catch(erro){
 
-        console.error(error);
-        alert("Erro ao enviar solicitação.");
+        console.error(erro);
+
+        alert("Erro ao excluir treino.");
 
     }
 
-});
+}
